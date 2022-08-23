@@ -1,8 +1,10 @@
 import QtQuick
 import QtQuick.Controls.Basic
 import QtQuick.Layouts
+import "./customs" as Cust
 
 ApplicationWindow {
+    id: mainWindow
     visible: true
     width: 800
     height: 600
@@ -29,18 +31,19 @@ ApplicationWindow {
                     anchors.verticalCenter: parent.verticalCenter
                     spacing: 4
 
-                    Rectangle {
-                        width: 10
-                        height: 10
-                        radius: 5
-                        color: "darkgrey"//"#77000000"
+                    Cust.CloseButton {
+                        onClicked: {
+                            mainWindow.showMinimized()
+                        }
                     }
 
-                    Rectangle {
-                        width: 10
-                        height: 10
-                        radius: 5
-                        color: "dimgrey"
+                    Cust.CloseButton {
+                        bg_color: "dimgrey"
+
+                        onClicked: {
+                            mainWindow.close()
+                        }
+                        
                     }
 
                 }
@@ -76,13 +79,14 @@ ApplicationWindow {
                             height: 30
                             radius: 15
                             border.color: "darkgrey"
+                            color: parent.down ? "dimgrey" : "white"
                         }
 
                         contentItem: Text {
                             text: parent.text
                             verticalAlignment: Text.AlignVCenter
                             horizontalAlignment: Text.AlignHCenter
-                            color: "darkgrey"
+                            color: parent.down ? "white" : "dimgrey"
                         }
 
                     }
@@ -99,309 +103,36 @@ ApplicationWindow {
 
             }
 
-            ColumnLayout {
-                Layout.fillWidth: true
-                
-
-                RowLayout {
-                    Layout.margins: 12
-                    Layout.fillWidth: true
-                    Layout.maximumHeight: 126
-                    spacing: 12
-
-                    Rectangle {
-                        width: 224
-                        Layout.fillHeight: true
-                        color: "white"
-
-                        Image {
-                            anchors.fill: parent
-                            source: "download.jpg"
-                            fillMode: Image.PreserveAspectFit
-                        }
-                    }
-
-                    Rectangle {
-                        Layout.fillWidth: true
-                        Layout.fillHeight: true
-                        //color: "gold"
-
-                        Text {
-                            text: "Big Buck Bunny 60fps 4K - Official Blender Foundation Short Film"
-                            font.pixelSize: 16
-                            wrapMode: Text.Wrap
-                            height: parent.height
-                            width: parent.width
-                            color: Qt.rgba(0,0,0,0.7)
-                        }
-                    }
-
-                    Rectangle {
-                        width: 148
-                        Layout.fillHeight: true
-                        //color: "pink"
-
-                        ColumnLayout {
-                            anchors.fill: parent
-                            anchors.margins: 2
-
-                            ComboBox {
-                                Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
-                                model: ['720p', '1080p']
-
-                                background: Rectangle {
-                                    implicitWidth: 56
-                                    implicitHeight: 24
-                                    radius: 2
-                                    border.color: "darkgrey"
-                                }
-
-                                contentItem: Text {
-                                    text: parent.displayText
-                                    color: "darkgrey"
-                                    //leftPadding: 4
-                                    rightPadding: 8
-                                    font.pixelSize: 13
-                                    horizontalAlignment: Text.AlignHCenter
-                                    verticalAlignment: Text.AlignVCenter
-                                }
-
-                                indicator: Rectangle {
-                                    x: 46
-                                    y: 10
-                                    width: 4
-                                    height: width
-                                    radius: width / 2
-                                    color: "darkgrey"
-                                }
-                            }
-
-                            Button {
-                                Layout.alignment: Qt.AlignBottom | Qt.AlignHCenter
-                                text: "Download"
-
-                                background: Rectangle {
-                                    implicitWidth: 100
-                                    implicitHeight: 24
-                                    color: accent
-                                    radius: 12
-                                }
-
-                                contentItem: Text {
-                                    text: parent.text
-                                    verticalAlignment: Text.AlignVCenter
-                                    horizontalAlignment: Text.AlignHCenter
-                                    color: "white"
-                                }
-                            }
-
-                        }
-
-                    }
-
-                }
-
-                RowLayout {
-                    Layout.margins: 12
-                    Layout.fillWidth: true
-                    Layout.maximumHeight: 126
-                    spacing: 12
-
-                    Rectangle {
-                        width: 224
-                        Layout.fillHeight: true
-                        color: "white"
-
-                        Image {
-                            anchors.fill: parent
-                            source: "sprite.jpg"
-                            fillMode: Image.PreserveAspectFit
-                        }
-                    }
-
-                    Rectangle {
-                        Layout.fillWidth: true
-                        Layout.fillHeight: true
-                        //color: "gold"
-
-                        Text {
-                            text: "Sprite Fright - Blender Open Movie"
-                            font.pixelSize: 16
-                            wrapMode: Text.Wrap
-                            height: parent.height
-                            width: parent.width
-                            color: Qt.rgba(0,0,0,0.7)
-                        }
-                    }
-
-                    Rectangle {
-                        width: 148
-                        Layout.fillHeight: true
-                        //color: "pink"
-
-                        ColumnLayout {
-                            anchors.fill: parent
-                            anchors.margins: 2
-
-                            ComboBox {
-                                Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
-                                model: ['720p', '1080p']
-
-                                background: Rectangle {
-                                    implicitWidth: 56
-                                    implicitHeight: 24
-                                    radius: 2
-                                    border.color: "darkgrey"
-                                }
-
-                                contentItem: Text {
-                                    text: parent.displayText
-                                    color: "darkgrey"
-                                    //leftPadding: 4
-                                    rightPadding: 8
-                                    font.pixelSize: 13
-                                    horizontalAlignment: Text.AlignHCenter
-                                    verticalAlignment: Text.AlignVCenter
-                                }
-
-                                indicator: Rectangle {
-                                    x: 46
-                                    y: 10
-                                    width: 4
-                                    height: width
-                                    radius: width / 2
-                                    color: "darkgrey"
-                                }
-                            }
-
-                            Button {
-                                Layout.alignment: Qt.AlignBottom | Qt.AlignHCenter
-                                text: "Download"
-
-                                background: Rectangle {
-                                    implicitWidth: 100
-                                    implicitHeight: 24
-                                    color: accent
-                                    radius: 12
-                                }
-
-                                contentItem: Text {
-                                    text: parent.text
-                                    verticalAlignment: Text.AlignVCenter
-                                    horizontalAlignment: Text.AlignHCenter
-                                    color: "white"
-                                }
-                            }
-
-                        }
-
-                    }
-
-                }
-
-                RowLayout {
-                    Layout.margins: 12
-                    Layout.fillWidth: true
-                    Layout.maximumHeight: 126
-                    spacing: 12
-
-                    Rectangle {
-                        width: 224
-                        Layout.fillHeight: true
-                        color: "white"
-
-                        Image {
-                            anchors.fill: parent
-                            source: "cam.jpg"
-                            fillMode: Image.PreserveAspectFit
-                        }
-                    }
-
-                    Rectangle {
-                        Layout.fillWidth: true
-                        Layout.fillHeight: true
-                        //color: "gold"
-
-                        Text {
-                            text: "Caminandes 3: Llamigos"
-                            font.pixelSize: 16
-                            wrapMode: Text.Wrap
-                            height: parent.height
-                            width: parent.width
-                            color: Qt.rgba(0,0,0,0.7)
-                        }
-                    }
-
-                    Rectangle {
-                        width: 148
-                        Layout.fillHeight: true
-                        //color: "pink"
-
-                        ColumnLayout {
-                            anchors.fill: parent
-                            anchors.margins: 2
-
-                            ComboBox {
-                                Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
-                                model: ['720p', '1080p']
-
-                                background: Rectangle {
-                                    implicitWidth: 56
-                                    implicitHeight: 24
-                                    radius: 2
-                                    border.color: "darkgrey"
-                                }
-
-                                contentItem: Text {
-                                    text: parent.displayText
-                                    color: "darkgrey"
-                                    //leftPadding: 4
-                                    rightPadding: 8
-                                    font.pixelSize: 13
-                                    horizontalAlignment: Text.AlignHCenter
-                                    verticalAlignment: Text.AlignVCenter
-                                }
-
-                                indicator: Rectangle {
-                                    x: 46
-                                    y: 10
-                                    width: 4
-                                    height: width
-                                    radius: width / 2
-                                    color: "darkgrey"
-                                }
-                            }
-
-                            Button {
-                                Layout.alignment: Qt.AlignBottom | Qt.AlignHCenter
-                                text: "Download"
-
-                                background: Rectangle {
-                                    implicitWidth: 100
-                                    implicitHeight: 24
-                                    color: accent
-                                    radius: 12
-                                }
-
-                                contentItem: Text {
-                                    text: parent.text
-                                    verticalAlignment: Text.AlignVCenter
-                                    horizontalAlignment: Text.AlignHCenter
-                                    color: "white"
-                                }
-                            }
-
-                        }
-
-                    }
-
-                }
-
-            }
-
             Rectangle {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
+
+                ScrollView {
+                    anchors.fill: parent
+                    anchors.margins: 12
+                    anchors.topMargin: 18
+                    clip: true
+
+                    ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
+
+                    ListView {
+                        id: lv
+                        anchors {
+                            fill: parent
+                        }
+                        width: parent.width
+                        height: parent.height
+                        model:  Cust.VideoModel {}
+                        spacing: 12
+                        delegate: Cust.VideoDelegate {}
+
+                        Component.onCompleted: {
+                            lv.model.append({'title': '1', 'thumbnail': '../download.jpg', 'link': ''})
+                        }
+                    }
+
+                }
+
             }
 
         }
