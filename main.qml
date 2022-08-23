@@ -122,12 +122,12 @@ ApplicationWindow {
                         }
                         width: parent.width
                         height: parent.height
-                        model:  Cust.VideoModel {}
+                        model:  ListModel {}
                         spacing: 12
                         delegate: Cust.VideoDelegate {}
 
                         Component.onCompleted: {
-                            lv.model.append({'title': '1', 'thumbnail': '../download.jpg', 'link': ''})
+                            lv.model.append({'title': '1', 'thumbnail': '../download.jpg', 'link': '', 'percent': 49})
                         }
                     }
 
