@@ -54,7 +54,16 @@ Component {
 
                     Cust.DownloadButton {
                         Layout.alignment: Qt.AlignBottom | Qt.AlignHCenter
-                        text: "Download"
+                        text: file_path ? 'Open File' : "Download"
+
+                        onClicked:{
+                            if (this.text == 'Download') {
+                                percent = 0.002; downloader.download(index, link)
+                            } else {
+                                percent = 0
+                                downloader.open_file(index, file_path)
+                            }
+                        }
                     }
 
                 }
@@ -66,7 +75,7 @@ Component {
         Rectangle {
             anchors.fill: parent
             color: "#44ffffff"
-            visible: percent > 0.1
+            visible: percent > 0.001
 
             Rectangle {
                 anchors.centerIn: parent
