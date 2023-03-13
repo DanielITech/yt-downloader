@@ -94,6 +94,8 @@ ApplicationWindow {
 
                         TextField {
                             id: url_field
+                            selectByMouse: true
+                            selectedTextColor: "white"
                             placeholderText: "https://"
 
                             background: Rectangle {
